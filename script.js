@@ -51,6 +51,16 @@
           )
         );
 
+      //Data used to calc difference in months
+      var givenDate = childSnapshot.val().startDate;
+      var format = "MM/DD/YY";
+      var start = moment(givenDate, format);
+
+
+      //Difference in Months
+      console.log(moment().diff(moment(start), "months"))
+
+
     // Handle the errors
   }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
