@@ -44,21 +44,27 @@
       // console.log(childSnapshot.val().startDate);
       // console.log(childSnapshot.val().monthlyRate);
 
-      //Append info to the table
-      $(".table").find('tbody')
-      .append($('<tr>')
-        .append($('<td>'+ childSnapshot.val().name + '</td><td>'+ childSnapshot.val().role + '</td><td>'+ childSnapshot.val().monthlyRate + '</td><td>')
-          )
-        );
 
       //Data used to calc difference in months
       var givenDate = childSnapshot.val().startDate;
-      var format = "MM/DD/YY";
+      var format = "DD/MM/YY";
       var start = moment(givenDate, format);
 
 
       //Difference in Months
-      console.log(moment().diff(moment(start), "months"))
+      console.log(moment().diff(moment(start), "months"));
+      var months = moment().diff(moment(start), "months");
+      var totalBilled = months * childSnapshot.val().monthlyRate;
+
+      //Append info to the table
+      $(".table").find('tbody')
+      .append($('<tr>')
+        .append($('<td>'+ childSnapshot.val().name + '</td><td>'+ childSnapshot.val().role + '</td><td>'+ childSnapshot.val().monthlyRate + '</td><td>' + months + '</td><td>$' + totalBilled + '</td>')
+          )
+        );
+
+
+
 
 
     // Handle the errors
